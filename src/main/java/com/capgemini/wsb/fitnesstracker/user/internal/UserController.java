@@ -4,6 +4,9 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,38 +28,72 @@ class UserController {
                           .toList();
     }
 
-    @GetMapping("/v1/users")
-    public List<UserDto> getAllUsers(){
-        return userService.findAllUsers()
-                          .stream()
-                          .map(userMapper::toDto)
-                          .toList();
+    // @GetMapping("/v1/users")
+    // public List<UserDto> getAllUsers(){
+    //     return userService.findAllUsers()
+    //                       .stream()
+    //                       .map(userMapper::toDto)
+    //                       .toList();
+    // }
+
+    @GetMapping("/{id}")
+    public UserDto getUserById(@PathVariable Long id){
+        return userMapper.toDto(userService.getUser(id).orElseThrow()};
     }
 
    
 
+    // @GetMapping("/simple")
+    // public List<UserBasicDto> getAllUserBasicDto(){
+    //     return userService.findAllUsers()
+    //                       .stream()
+    //                       .map(userMapper::toBasicDto)
+    //                       .toList();
+    // }
+
     @GetMapping("/simple")
-    public List<UserBasicDto> getAllUserBasicDto(){
+    public List<UserSimpleDto> getAllUsersSimple(){
         return userService.findAllUsers()
                           .stream()
-                          .map(userMapper::toBasicDto)
+                          .map(userMapper::toSimpleDto)
                           .toList();
     }
 
 
-    @GetMapping("/{id}")
-    public UserDto getUserById(@PathVariable Long id){
-        return userMapper.toDto(userService.getUser(id).orElseThrow());
-    }
+
+
+
+    // @PostMapping("/addUser")
+    // public ResponseEntity<User> createUser(@RequestBody User user) {
+    //     User createdUser = userService.createUser(user);
+    //     return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
+    // }
+
+
+    // @PostMapping
+    // public User addUser(@RequestBody UserDto userDto) throws InterruptedException {
+
+    //     // Demonstracja how to use @RequestBody
+    //     System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
+
+    //     // TODO: saveUser with Service and return User
+    //     return userService.createUser(userMapper.toEntity(userDto));
+    //     // return null;
+    // }
 
     @PostMapping
-    public User addUser(@RequestBody UserDto userDto) throws InterruptedException {
+    public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) {
+        logger.info("User with e-mail: {} passed to the request", userDto.email());
 
-        // Demonstracja how to use @RequestBody
-        System.out.println("User with e-mail: " + userDto.email() + "passed to the request");
+        User newUser = userMapper.toEntity(userDto);
+        User createdUser = userService.createUser(newUser);
 
-        // TODO: saveUser with Service and return User
-        return null;
-    }
+    // Mapowanie utworzonego użytkownika z powrotem na DTO przed zwróceniem
+        UserDto createdUserDto = userMapper.toDto(createdUser);
+    
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdUserDto);
+}
+
+    
 
 }
