@@ -4,7 +4,7 @@ management:
       include: mappings
 
 spring:
-  profilies:
+  profiles:
     active: loadInitialData
 
   datasource:
@@ -17,5 +17,5 @@ spring:
       enabled: true
 
 server:
-  port: 8082
+  port: 8080
 
