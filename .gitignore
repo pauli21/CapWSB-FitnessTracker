@@ -36,3 +36,6 @@ build/
 
 ### Mac OS ###
 .DS_Store
+
+# Ignore Oracle JDK directory
+src/main/java/com/capgemini/wsb/Oracle_JDK-22/
