@@ -4,7 +4,7 @@ Zadania proszę realizować zgodnie z własnym tempem. Zadania mają pomóc w pr
 
 ## ZADANIE 1
 1. Wspólnie z inną osobą (w parze) załóż repozytorium projektowe dla części Spring (Fork z repozytorium prowadzącego - rekomendacja Github.com / bądź prywatne repozytorium z nadanym dostępem dla prowadzącego).
-2. Skonfiguruj projekt w IntelliJ IDEA (lub innym IDE) z wykorzystaniem Maven 
+2. Skonfiguruj projekt w IntelliJ IDEA (lub innym IDE) z wykorzystaniem Maven
 3. Dodaj odpowiedni Profil Spring do konfiguracji, celem załadowania danych testowych (Profil: loadInitialData)
 4. Sprawdz bazę danych H2, czy dane poprawnie się załadowały.
 5. Zmień nazwę wersji aplikacji (pom.xml) na własną przy zachowaniu zasady '1.0.0-NumerIndeksu1-NumerIndeksu2-SNAPSHOT' 
@@ -15,4 +15,4 @@ Zadania proszę realizować zgodnie z własnym tempem. Zadania mają pomóc w pr
 10. Znajdź i uruchom testy jednostkowe
 11. Udostępnij prowadzącemu link do repozytorium (wrzuć link do Excela, jedna osoba z pary).
 
-Termin upływa na 7 dni po rozpoczęciu laboratorium.
+7 dni od labolatoriów
