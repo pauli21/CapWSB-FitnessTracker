@@ -29,5 +29,7 @@ public interface UserProvider {
      * @return An {@link Optional} containing the all users,
      */
     List<User> findAllUsers();
+    List<UserSimpleDto> findUsersByEmail(String emailPart);
+    List<UserSimpleDto> findUsersOlderThan(int age);
 
 }

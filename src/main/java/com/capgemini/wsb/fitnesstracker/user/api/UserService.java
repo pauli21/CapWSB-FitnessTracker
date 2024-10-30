@@ -9,12 +9,8 @@ import java.util.List;
 public interface UserService {
 
     User createUser(User user);
-//    public final UserController userController;
-//    createUser
+    void deleteUser(Long id);
+    User updateUser(Long id, User user);
 
-//    User getUser(Long id);
-//    List<User> findAllUsers();
-//    User updateUser(Long id, User user);
-//    void deleteUser(Long id);
 
 }
