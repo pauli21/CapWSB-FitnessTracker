@@ -4,6 +4,9 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.java.Log;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import com.capgemini.wsb.fitnesstracker.user.api.UserSimpleDto;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,10 +14,14 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@Slf4j
 @RestController
 @RequestMapping("/v1/users")
 @RequiredArgsConstructor
 class UserController {
+
+//    private static final Logger log = LoggerFactory.getLogger(UserController.class);
+
 
     private final UserServiceImpl userService;
 
@@ -38,7 +45,7 @@ class UserController {
 
     @GetMapping("/{id}")
     public UserDto getUserById(@PathVariable Long id){
-        return userMapper.toDto(userService.getUser(id).orElseThrow()};
+        return userMapper.toDto(userService.getUser(id).orElseThrow());
     }
 
    
@@ -83,17 +90,15 @@ class UserController {
 
     @PostMapping
     public ResponseEntity<UserDto> addUser(@RequestBody UserDto userDto) {
-        logger.info("User with e-mail: {} passed to the request", userDto.email());
+        log.info("User with e-mail: {} passed to the request", userDto.email());
 
         User newUser = userMapper.toEntity(userDto);
         User createdUser = userService.createUser(newUser);
 
-    // Mapowanie utworzonego użytkownika z powrotem na DTO przed zwróceniem
+        // Mapowanie utworzonego użytkownika z powrotem na DTO przed zwróceniem
         UserDto createdUserDto = userMapper.toDto(createdUser);
-    
+
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUserDto);
+    }
 }
 
-    
-
-}
