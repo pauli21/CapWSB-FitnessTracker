@@ -1,6 +1,5 @@
 package com.capgemini.wsb.fitnesstracker.loader;
 
-import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import lombok.ToString;
@@ -12,6 +11,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import com.capgemini.wsb.fitnesstracker.training.api.Training;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

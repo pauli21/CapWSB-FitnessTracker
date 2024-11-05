@@ -1,0 +1,200 @@
+{
+	"info": {
+		"_postman_id": "f3bc3e35-20c8-44b5-87c4-e59516bb4d09",
+		"name": "Training",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38906674"
+	},
+	"item": [
+		{
+			"name": "Get All Trainings",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trainings by User ID (ID=5)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings/user/5",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings",
+						"user",
+						"5"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Completed Trainings After Date",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings/completedAfter?date=2024-01-17",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings",
+						"completedAfter"
+					],
+					"query": [
+						{
+							"key": "date",
+							"value": "2024-01-17"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Trainings by Activity Type",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings/activityType?activityType=RUNNING",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings",
+						"activityType"
+					],
+					"query": [
+						{
+							"key": "activityType",
+							"value": "RUNNING"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Training",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"user\": {\r\n            \"id\": 1,\r\n            \"firstName\": \"Emma\",\r\n            \"lastName\": \"Johnson\",\r\n            \"birthdate\": \"1996-11-05\",\r\n            \"email\": \"Emma.Johnson@domain.com\"\r\n        },\r\n        \"startTime\": \"2024-01-19T07:00:00.000+00:00\",\r\n        \"endTime\": \"2024-01-19T08:30:00.000+00:00\",\r\n        \"activityType\": \"CYCLING\",\r\n        \"distance\": 11.5,\r\n        \"averageSpeed\": 18.2\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "TEST - Creating Training",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings/user/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings",
+						"user",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Training",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"user\": {\r\n        \"id\": 1 // Musisz podać ID użytkownika, które jest już w systemie\r\n    },\r\n    \"startTime\": \"2024-01-19T07:00:00.000+00:00\", // Nie zmieniamy tego pola\r\n    \"endTime\": \"2024-01-19T08:30:00.000+00:00\", // Nie zmieniamy tego pola\r\n    \"activityType\": \"RUNNING\", // Nie zmieniamy tego pola\r\n    \"distance\": 12.0, // Nowa wartość\r\n    \"averageSpeed\": 9.5 // Nowa wartość\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainings/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Training by ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -2,7 +2,6 @@ package com.capgemini.wsb.fitnesstracker.training;
 
 import com.capgemini.wsb.fitnesstracker.IntegrationTest;
 import com.capgemini.wsb.fitnesstracker.IntegrationTestBase;
-import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.training.internal.ActivityType;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
 import org.junit.jupiter.api.Test;
@@ -11,6 +10,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import com.capgemini.wsb.fitnesstracker.training.api.Training;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
