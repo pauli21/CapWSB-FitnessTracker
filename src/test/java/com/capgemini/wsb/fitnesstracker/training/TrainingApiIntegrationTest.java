@@ -22,6 +22,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+
+/**
+ * Testy integracyjne dla API treningów.
+ * Sprawdza poprawność operacji CRUD oraz dodatkowych filtrów.
+ */
+
 @IntegrationTest
 @Transactional
 @AutoConfigureMockMvc(addFilters = false)
@@ -30,6 +36,15 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
     @Autowired
     private MockMvc mockMvc;
 
+
+
+    /**
+     * Test sprawdza, czy zwracane są wszystkie istniejące treningi.
+     * Wykonuje zapytanie GET na endpoint /v1/trainings i weryfikuje,
+     * czy odpowiedź zawiera prawidłowe informacje o użytkowniku oraz szczegóły treningu.
+     *
+     * @throws Exception w przypadku błędów po stronie serwera.
+     */
     @Test
     void shouldReturnAllTrainings_whenGettingAllTrainings() throws Exception {
 
@@ -55,6 +70,13 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$[1]").doesNotExist());
     }
 
+    /**
+     * Test sprawdza, czy zwracane są wszystkie treningi dedykowanego użytkownika.
+     * Wykonuje zapytanie GET na endpoint /v1/trainings/{userId} i sprawdza,
+     * czy odpowiedź zawiera wyłącznie treningi związane z przekazanym identyfikatorem użytkownika.
+     *
+     * @throws Exception w przypadku błędów po stronie serwera.
+     */
     @Test
     void shouldReturnAllTrainingsForDedicatedUser_whenGettingAllTrainingsForDedicatedUser() throws Exception {
 
@@ -78,6 +100,13 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$[1]").doesNotExist());;
     }
 
+    /**
+     * Test sprawdza, czy zwracane są wszystkie zakończone treningi po zadanym czasie.
+     * Wykonuje zapytanie GET na endpoint /v1/trainings/finished/{afterTime}
+     * i weryfikuje, czy odpowiedź zawiera tylko treningi zakończone po wskazanej dacie.
+     *
+     * @throws Exception w przypadku błędów po stronie serwera.
+     */
     @Test
     void shouldReturnAllFinishedTrainingsAfterTime_whenGettingAllFinishedTrainingsAfterTime() throws Exception {
 
@@ -102,6 +131,13 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$[1]").doesNotExist());
     }
 
+    /**
+     * Test sprawdza, czy możliwe jest filtrowanie treningów według typu aktywności.
+     * Wykonuje zapytanie GET na endpoint /v1/trainings/activityType z parametrem
+     * `activityType` i sprawdza, czy zwrócone treningi mają odpowiedni typ aktywności.
+     *
+     * @throws Exception w przypadku błędów po stronie serwera.
+     */
     @Test
     void getAllTrainingByActivityType_whenGettingAllTrainingByActivityType() throws Exception {
 
@@ -128,6 +164,13 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
                 .andExpect(jsonPath("$[2]").doesNotExist());
     }
 
+    /**
+     * Test sprawdza, czy nowy trening jest poprawnie zapisywany w bazie danych.
+     * Wykonuje zapytanie POST na endpoint /v1/trainings z danymi nowego treningu
+     * i weryfikuje, czy odpowiedź zawiera szczegóły nowo utworzonego treningu.
+     *
+     * @throws Exception w przypadku błędów po stronie serwera.
+     */
     @Test
     void shouldPersistTraining_whenCreatingNewTraining() throws Exception {
 
@@ -155,6 +198,13 @@ class TrainingApiIntegrationTest extends IntegrationTestBase {
 
     }
 
+    /**
+     * Test sprawdza, czy możliwa jest aktualizacja istniejącego treningu.
+     * Wykonuje zapytanie PUT na endpoint /v1/trainings/{trainingId} z danymi aktualizacji
+     * i sprawdza, czy odpowiedź zawiera zaktualizowane szczegóły treningu.
+     *
+     * @throws Exception w przypadku błędów po stronie serwera.
+     */
     @Test
     void shouldUpdateTraining_whenUpdatingTraining() throws Exception {
 

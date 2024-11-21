@@ -12,7 +12,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "users")
 @Getter
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+//@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor(access = AccessLevel.PUBLIC)
+
 @ToString
 public class User {
 
@@ -56,6 +58,11 @@ public class User {
     public void setBirthdate(LocalDate birthdate) {
         this.birthdate = birthdate;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 
     public void setEmail(String email) {
         this.email = email;

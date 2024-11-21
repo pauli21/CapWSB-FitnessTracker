@@ -7,10 +7,13 @@ import com.capgemini.wsb.fitnesstracker.user.api.User;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.text.SimpleDateFormat;
 
 import java.util.Optional;
 import java.util.Date;
 import java.util.List;
+import java.time.LocalDate;
+import java.time.ZoneId;
 
 // TODO: Provide Impl
 @Service
@@ -27,6 +30,8 @@ public class TrainingServiceImpl implements TrainingProvider {
     public List<Training> getAllTrainings() {
         return trainingRepository.findAll();
     }
+
+
 
     @Override
     public List<Training> getTrainingsByUserId(Long userId) {
@@ -68,6 +73,17 @@ public class TrainingServiceImpl implements TrainingProvider {
                 .orElseThrow(() -> new TrainingNotFoundException(id));
         existingTraining.setDistance(trainingDto.getDistance());
         existingTraining.setAverageSpeed(trainingDto.getAverageSpeed());
+        existingTraining.setEndTime(trainingDto.getEndTime());
+
+        // Ustawienie pola DATE w formacie LocalDate (pierwszy dzień miesiąca)
+        if (trainingDto.getEndTime() != null) {
+            LocalDate localDate = trainingDto.getEndTime().toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate()
+                    .withDayOfMonth(1);  // Ustawienie na pierwszy dzień miesiąca
+            existingTraining.setDate(localDate);
+        }
+
         return trainingRepository.save(existingTraining);
     }
 
@@ -75,6 +91,19 @@ public class TrainingServiceImpl implements TrainingProvider {
     public Optional<Training> getTrainingById(Long id) {
         return trainingRepository.findById(id);
     }
+
+    @Override
+    public List<Training> getTrainingsByUserIdAndMonth(Long userId, int year, int month) {
+        return trainingRepository.findAll().stream()
+                .filter(training -> training.getUser().getId().equals(userId))
+                .filter(training -> {
+                    Date startTime = training.getStartTime();
+                    // Sprawdź, czy czas rozpoczęcia treningu mieści się w podanym roku i miesiącu
+                    return startTime.getYear() == year - 1900 && startTime.getMonth() == month - 1;
+                })
+                .toList();
+    }
+
 
 
 //    @Override

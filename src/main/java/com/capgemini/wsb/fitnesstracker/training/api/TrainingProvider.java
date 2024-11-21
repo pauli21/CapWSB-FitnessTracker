@@ -14,7 +14,7 @@ public interface TrainingProvider {
      * Retrieves a training based on their ID.
      * If the user with given ID is not found, then {@link Optional#empty()} will be returned.
      *
-//     * @param trainingId id of the training to be searched
+     //     * @param trainingId id of the training to be searched
      * @return An {@link Optional} containing the located Training, or {@link Optional#empty()} if not found
      */
 //    Optional<User> getTraining(Long trainingId);
@@ -31,6 +31,9 @@ public interface TrainingProvider {
     Training updateTraining(Long id, TrainingDto trainingDto);
 
     Optional<Training> getTrainingById(Long id);
+
+    List<Training> getTrainingsByUserIdAndMonth(Long userId, int month, int year);
+
 
 
 }

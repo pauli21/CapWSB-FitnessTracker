@@ -12,6 +12,7 @@ public class TrainingDto {
     private ActivityType activityType;
     private double distance;
     private double averageSpeed;
+    private String date;
 
     // Gettery i Settery
 
@@ -21,6 +22,13 @@ public class TrainingDto {
 
     public void setUser(User user) {
         this.user = user;
+    }
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Date getStartTime() {

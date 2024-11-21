@@ -16,6 +16,27 @@ spring:
     console:
       enabled: true
 
+  # Konfiguracja JPA (Hibernate)
+  jpa:
+    hibernate:
+      ddl-auto: update # Ustawienie strategii dla Hibernate - w tym przypadku 'update' automatycznie tworzy/aktualizuje tabele w bazie
+    show-sql: true # Pokazuje zapytania SQL w konsoli
+    properties:
+      hibernate:
+        format_sql: true # Sformatowane zapytania SQL
+
+  mail:
+    host: smtp.wp.pl
+    port: 587
+    username: paulinakamilawsbmerito@wp.pl
+    password: PaulinaKamilaWSB#
+    properties:
+      mail.smtp.auth: true
+      mail.smtp.starttls.enable: true
+
 server:
   port: 8080
+
+
+
 

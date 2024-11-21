@@ -1,0 +1,246 @@
+{
+	"info": {
+		"_postman_id": "c58310f8-06b4-43ae-92e0-dc1c674ff98b",
+		"name": "EMAIL_SENDING",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38906674"
+	},
+	"item": [
+		{
+			"name": "SPRAWDZENIEUZYTKOWNIKOW",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SPRAWDZENIETRENINGOW",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "SPRAWDZENIESTATYSTYK",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/statistics",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"statistics"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DODANIEUŻYTKOWNIKA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\r\n        \"Id\": 11,\r\n        \"firstName\": \"Paula\",\r\n        \"lastName\": \"Kamila\",\r\n        \"birthdate\": \"2000-01-01\",\r\n        \"email\": \"paulajuszczak123@wp.pl\"\r\n    }",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/v1/users",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DODANIETRENINGUZDATA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2024-11-21\",\r\n    \"user\": {\r\n        \"id\": 11,\r\n        \"firstName\": \"Paula\",\r\n        \"lastName\": \"Kamila\",\r\n        \"birthdate\": \"2000-01-01\",\r\n        \"email\": \"paulajuszczak123@wp.pl\"\r\n    },\r\n    \"startTime\": \"2024-11-21T07:00:00.000+00:00\",\r\n    \"endTime\": \"2024-11-21T08:30:00.000+00:00\",\r\n    \"activityType\": \"CYCLING\",\r\n    \"distance\": 11.5,\r\n    \"averageSpeed\": 18.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GENEROWANIERAPORTU",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/statistics/download/11?month=11&year=2024",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"statistics",
+						"download",
+						"11"
+					],
+					"query": [
+						{
+							"key": "month",
+							"value": "11"
+						},
+						{
+							"key": "year",
+							"value": "2024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DODANIETRENINGUZDATA2",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2024-11-11\",\r\n    \"user\": {\r\n        \"id\": 11,\r\n        \"firstName\": \"Paula\",\r\n        \"lastName\": \"Kamila\",\r\n        \"birthdate\": \"2000-01-01\",\r\n        \"email\": \"paulajuszczak123@wp.pl\"\r\n    },\r\n    \"startTime\": \"2024-11-11T07:00:00.000+00:00\",\r\n    \"endTime\": \"2024-11-11T08:30:00.000+00:00\",\r\n    \"activityType\": \"RUNNING\",\r\n    \"distance\": 11.5,\r\n    \"averageSpeed\": 18.2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/trainings",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"trainings"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GENEROWANIERAPORTU Copy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/statistics/download/11?month=11&year=2024",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"statistics",
+						"download",
+						"11"
+					],
+					"query": [
+						{
+							"key": "month",
+							"value": "11"
+						},
+						{
+							"key": "year",
+							"value": "2024"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "WYSYŁANIEMAILA",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/statistics/generate/11?month=11&year=2024",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"statistics",
+						"generate",
+						"11"
+					],
+					"query": [
+						{
+							"key": "month",
+							"value": "11"
+						},
+						{
+							"key": "year",
+							"value": "2024"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
