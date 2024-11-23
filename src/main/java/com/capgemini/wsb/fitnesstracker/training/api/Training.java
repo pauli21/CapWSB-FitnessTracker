@@ -22,10 +22,6 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-//    private Long userId;
-//
-//    private LocalDate date;
-
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
@@ -51,6 +47,17 @@ public class Training {
     @Column(name = "average_speed")
     private double averageSpeed;
 
+    /**
+     * Konstruktor klasy `Training` do utworzenia obiektu na podstawie danych o użytkowniku, czasie rozpoczęcia,
+     * czasie zakończenia, typie aktywności, dystansie i średniej prędkości.
+     *
+     * @param user Użytkownik, który wykonał trening.
+     * @param startTime Czas rozpoczęcia treningu.
+     * @param endTime Czas zakończenia treningu.
+     * @param activityType Typ aktywności (np. bieganie, jazda na rowerze).
+     * @param distance Dystans pokonany podczas treningu.
+     * @param averageSpeed Średnia prędkość podczas treningu.
+     */
     public Training(
             final User user,
             final Date startTime,
@@ -66,36 +73,38 @@ public class Training {
         this.averageSpeed = averageSpeed;
         this.date = endTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().withDayOfMonth(1); // ustawienie na pierwszy dzień miesiąca
     }
+
+    /**
+     * Ustawia dystans pokonany podczas treningu.
+     *
+     * @param distance Dystans pokonany podczas treningu.
+     */
     public void setDistance(double distance) {
      this.distance = distance;
     }
 
+    /**
+     * Ustawia średnią prędkość podczas treningu.
+     *
+     * @param averageSpeed Średnia prędkość podczas treningu.
+     */
     public void setAverageSpeed(double averageSpeed) {
      this.averageSpeed = averageSpeed;
     }
 
 
-//    // Aktualizacja `date` na podstawie `endTime`
-//    public void updateDateFromEndTime() {
-//        if (this.endTime != null) {
-//            this.date = new java.text.SimpleDateFormat("yyyy-MM").format(this.endTime);
-//        }
-//    }
-
-//    // Setter z automatyczną aktualizacją `date`
-//
-//    public void setEndTime(Date endTime) {
-//        this.endTime = endTime;
-//        this.date = endTime.toInstant().atZone(ZoneId.systemDefault()).toLocalDate().withDayOfMonth(1); // aktualizacja pola date
-//    }
-
-        // Setter z automatyczną aktualizacją date
-        public void setEndTime(Date endTime) {
-            this.endTime = endTime;
-            this.date = endTime.toInstant()
-                    .atZone(ZoneId.systemDefault())
-                    .toLocalDate()
-                    .withDayOfMonth(1);
-        }
+    /**
+     * Ustawia czas zakończenia treningu oraz aktualizuje datę (na podstawie czasu zakończenia),
+     * ustawiając ją na pierwszy dzień miesiąca.
+     *
+     * @param endTime Czas zakończenia treningu.
+     */
+    public void setEndTime(Date endTime) {
+        this.endTime = endTime;
+        this.date = endTime.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate()
+                .withDayOfMonth(1);
+    }
 
 }
