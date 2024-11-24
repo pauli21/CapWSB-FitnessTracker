@@ -13,6 +13,11 @@ import com.capgemini.wsb.fitnesstracker.user.api.UserNotFoundException;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
+
+/**
+ * Implementacja serwisu użytkowników, który obsługuje operacje na użytkownikach,
+ * takie jak tworzenie, aktualizacja, usuwanie oraz wyszukiwanie użytkowników.
+ */
 @Service
 @RequiredArgsConstructor
 @Slf4j
@@ -21,6 +26,15 @@ class UserServiceImpl implements UserService, UserProvider {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
 
+    /**
+     * Tworzy nowego użytkownika w systemie.
+     * Sprawdza, czy użytkownik ma już przypisane ID (co oznacza, że istnieje w bazie danych).
+     * Jeśli tak, rzuca wyjątek.
+     *
+     * @param user Obiekt użytkownika, który ma zostać zapisany w systemie.
+     * @return Zapisany obiekt użytkownika.
+     * @throws IllegalArgumentException Jeśli użytkownik ma przypisane ID (czyli próbuje być zaktualizowany, a nie tworzony).
+     */
     @Override
     public User createUser(final User user) {
         log.info("Creating User {}", user);
@@ -96,16 +110,33 @@ class UserServiceImpl implements UserService, UserProvider {
 
 
 
+    /**
+     * Pobiera użytkownika na podstawie jego ID.
+     *
+     * @param userId ID użytkownika, którego dane mają zostać pobrane.
+     * @return {@link Optional} zawierający użytkownika lub {@link Optional#empty()} jeśli użytkownik nie istnieje.
+     */
     @Override
     public Optional<User> getUser(final Long userId) {
         return userRepository.findById(userId);
     }
 
+    /**
+     * Pobiera użytkownika na podstawie jego adresu e-mail.
+     *
+     * @param email Adres e-mail użytkownika, którego dane mają zostać pobrane.
+     * @return {@link Optional} zawierający użytkownika lub {@link Optional#empty()} jeśli użytkownik nie istnieje.
+     */
     @Override
     public Optional<User> getUserByEmail(final String email) {
         return userRepository.findByEmail(email);
     }
 
+    /**
+     * Pobiera wszystkich użytkowników z systemu.
+     *
+     * @return Lista wszystkich użytkowników.
+     */
     @Override
     public List<User> findAllUsers() {
         return userRepository.findAll();

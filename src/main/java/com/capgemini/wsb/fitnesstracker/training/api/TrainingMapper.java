@@ -3,15 +3,21 @@ package com.capgemini.wsb.fitnesstracker.training.api;
 import com.capgemini.wsb.fitnesstracker.training.api.TrainingDto;
 import com.capgemini.wsb.fitnesstracker.training.api.Training;
 import com.capgemini.wsb.fitnesstracker.user.api.User;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDate;
 
+/**
+ * Klasa mapująca dane między obiektami {@link TrainingDto} a {@link Training}.
+ */
 public class TrainingMapper {
 
-    // Konwersja z TrainingDto do Training
-    public static Training toEntity(TrainingDto dto) {
+    /**
+     * Konwertuje obiekt {@link TrainingDto} na obiekt {@link Training}.
+     *
+     * @param dto obiekt DTO do przekonwertowania
+     * @return obiekt encji {@link Training}
+     */    public static Training toEntity(TrainingDto dto) {
         Training training = new Training(
                 dto.getUser(),
                 dto.getStartTime(),
@@ -21,7 +27,6 @@ public class TrainingMapper {
                 dto.getAverageSpeed()
         );
 
-        // Jeśli dto.getDate() jest Stringiem w formacie "yyyy-MM", należy go przekonwertować na LocalDate
         if (dto.getDate() != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
             training.setDate(LocalDate.parse(dto.getDate(), formatter));
@@ -30,7 +35,12 @@ public class TrainingMapper {
         return training;
     }
 
-
+    /**
+     * Konwertuje obiekt {@link Training} na obiekt {@link TrainingDto}.
+     *
+     * @param training obiekt encji do przekonwertowania
+     * @return obiekt DTO {@link TrainingDto}
+     */
     public static TrainingDto toDto(Training training) {
         TrainingDto dto = new TrainingDto();
         dto.setUser(training.getUser());
@@ -40,7 +50,6 @@ public class TrainingMapper {
         dto.setDistance(training.getDistance());
         dto.setAverageSpeed(training.getAverageSpeed());
 
-        // Konwersja z LocalDate na String w formacie "yyyy-MM"
         if (training.getDate() != null) {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
             dto.setDate(training.getDate().format(formatter));

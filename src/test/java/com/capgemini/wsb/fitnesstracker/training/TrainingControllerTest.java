@@ -17,6 +17,11 @@ import java.util.List;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
+/**
+ * Testy jednostkowe kontrolera {@link TrainingController}.
+ * Sprawdzają poprawność działania endpointów kontrolera poprzez symulację
+ * zapytań HTTP oraz weryfikację odpowiedzi.
+ */
 @WebMvcTest(TrainingController.class)
 class TrainingControllerTest {
 
@@ -26,6 +31,12 @@ class TrainingControllerTest {
     @MockBean
     private TrainingServiceImpl trainingService;
 
+    /**
+     * Testuje endpoint do pobierania wszystkich treningów.
+     * Sprawdza, czy serwer poprawnie zwraca status 200 oraz czy odpowiedź jest tablicą.
+     *
+     * @throws Exception Jeśli wystąpi błąd w trakcie wykonywania zapytania.
+     */
     @Test
     void shouldReturnAllTrainings() throws Exception {
         // Arrange
@@ -37,6 +48,12 @@ class TrainingControllerTest {
                 .andExpect(jsonPath("$").isArray());
     }
 
+    /**
+     * Testuje endpoint do pobierania treningów na podstawie ID użytkownika.
+     * Sprawdza, czy serwer zwraca poprawny status oraz czy odpowiedź to tablica.
+     *
+     * @throws Exception Jeśli wystąpi błąd w trakcie wykonywania zapytania.
+     */
     @Test
     void shouldReturnTrainingsByUserId() throws Exception {
         // Arrange
@@ -49,6 +66,12 @@ class TrainingControllerTest {
                 .andExpect(jsonPath("$").isArray());
     }
 
+    /**
+     * Testuje endpoint do tworzenia nowego treningu.
+     * Sprawdza, czy serwer zwraca status 200 po wysłaniu zapytania POST z danymi treningu.
+     *
+     * @throws Exception Jeśli wystąpi błąd w trakcie wykonywania zapytania.
+     */
     @Test
     void shouldCreateNewTraining() throws Exception {
         // Arrange
@@ -69,6 +92,12 @@ class TrainingControllerTest {
                 .andExpect(status().isOk());
     }
 
+    /**
+     * Testuje endpoint do aktualizacji treningu.
+     * Sprawdza, czy serwer zwraca status 200 po wysłaniu zapytania PUT z danymi aktualizacji.
+     *
+     * @throws Exception Jeśli wystąpi błąd w trakcie wykonywania zapytania.
+     */
     @Test
     void shouldUpdateTraining() throws Exception {
         // Arrange
