@@ -31,7 +31,7 @@ public class UserSimpleDto {
     /**
      * Ustawia identyfikator użytkownika.
      *
-     * @param id identyfikator użytkownika do ustawienia
+     * @param id identyfikator użytkownika do ustawieniaa
      */
     public void setId(Long id) {
         this.id = id;

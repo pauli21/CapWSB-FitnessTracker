@@ -1,7 +1,7 @@
 package com.capgemini.wsb.fitnesstracker.mail.api;
-
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
+
 /**
  * Klasa reprezentująca dane e-mail do wysyłki.
  * Zawiera adres odbiorcy, temat oraz treść wiadomości.
@@ -10,6 +10,7 @@ import jakarta.validation.constraints.NotNull;
  * @param subject temat wiadomości (nie może być pusty ani null).
  * @param content treść wiadomości e-mail (nie może być pusta ani null).
  */
+
 public record EmailDto(
     @NotNull @Email String toAddress,
     @NotNull String subject,
